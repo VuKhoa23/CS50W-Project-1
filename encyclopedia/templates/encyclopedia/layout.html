@@ -27,7 +27,7 @@
         <div>
           <a href="{% url 'encyclopedia:index' %}">Home</a>
         </div>
-        <div>Create New Page</div>
+        <div><a href="{% url 'encyclopedia:create'%}">New Page</a></div>
         <div><a href="{% url 'encyclopedia:random'%}">Random Page</a></div>
         {% block nav %} {% endblock %}
       </div>

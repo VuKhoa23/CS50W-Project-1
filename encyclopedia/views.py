@@ -46,10 +46,7 @@ def get_searched_entry(request):
                     "entries": sub_entries,
                     "searchForm": SearchForm()})
             else:
-                return render(request, "encyclopedia/show-wiki.html", {
-                "entries": util.list_entries(),
-                "wiki_entry": "<h1>Not found</h1>",
-                "searchForm": SearchForm()})
+                return HttpResponseRedirect("error/not-found")
         
 def random(request):
     entries = util.list_entries()
@@ -67,8 +64,31 @@ def edit(request):
 
 def edit_save(request):
     if request.method == "POST":
-        entry = request.POST.get('new_entry', False)
+        content = request.POST.get('edit_content', False)
         title = request.POST.get('title', False)
-        util.save_entry(title, entry)
+        util.save_entry(title, content)
     return HttpResponseRedirect(f"{title}")
             
+def create(request):
+     return render(request, "encyclopedia/create-form.html", {
+        "searchForm": SearchForm()
+    })
+
+def error(request, error):
+    return render(request, "encyclopedia/error.html", {
+        "error": error,
+        "entries": util.list_entries(),
+        "searchForm": SearchForm()
+
+    })
+
+def create_save(request):
+    entries = util.list_entries()
+    if request.method == "POST":
+        content = request.POST.get('new_page_content', False)
+        title = request.POST.get('title', False)
+        for entry in entries:
+            if entry.lower() == title.lower():
+                return HttpResponseRedirect("error/new_page_err")
+        util.save_entry(title, content)
+    return HttpResponseRedirect(f"{title}")

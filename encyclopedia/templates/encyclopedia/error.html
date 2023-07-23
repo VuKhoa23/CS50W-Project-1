@@ -1,0 +1,6 @@
+{% extends "encyclopedia/layout.html" %} {% block title %} {{title}}
+{%endblock%} {% block body %} {% if error == 'new_page_err'%}
+<h1>The title already existed</h1>
+{% else%}
+<h1>Cannot find the page</h1>
+{% endif%} {% endblock %}

@@ -2,8 +2,9 @@
 {%endblock%} {% block body %} {% with wiki_entry=wiki_entry%}
 <form action="{% url 'encyclopedia:edit_save'  %}" method="POST">
   {% csrf_token %}
-  <textarea name="new_entry">{{wiki_entry}}</textarea>
+  <textarea name="edit_content">{{wiki_entry}}</textarea>
   <input type="hidden" name="title" value="{{title}}" />
+  <br />
   <input type="submit" value="Save" />
 </form>
 {% endwith %} {% endblock %}
