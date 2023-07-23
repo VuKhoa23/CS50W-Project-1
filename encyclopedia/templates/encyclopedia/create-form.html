@@ -1,12 +1,17 @@
 {% extends "encyclopedia/layout.html" %} {% block title %} Encyclopedia
 {%endblock %} {% block body %}
 <h1>Create Page</h1>
+{% autoescape off %}
 <form action="{% url 'encyclopedia:create_save'  %}" method="POST">
   {% csrf_token %}
   <input type="text" name="title" placeholder="Enter title here" />
   <br />
-  <textarea name="new_page_content"></textarea>
+  <textarea
+    style="height: 70vh"
+    placeholder="Enter description here"
+    name="new_page_content"
+  ></textarea>
   <br />
   <input type="submit" value="Save" />
 </form>
-{% endblock %}
+{%endautoescape%} {% endblock %}

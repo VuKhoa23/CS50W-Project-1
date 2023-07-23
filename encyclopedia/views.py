@@ -16,6 +16,8 @@ def index(request):
     })
 
 def get_entry(request, title):
+    if title not in util.list_entries():
+        return HttpResponseRedirect("error/not-found")
     return render(request, "encyclopedia/show-wiki.html", {
         "entries": util.list_entries(),
         "wiki_entry": markdown2.markdown(util.get_entry(title)),

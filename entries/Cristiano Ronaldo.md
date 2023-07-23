@@ -1,3 +1,0 @@
-#RONALDO
-
-## A soccer legend

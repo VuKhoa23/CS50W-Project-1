@@ -1,10 +1,16 @@
-{% extends "encyclopedia/layout.html" %} {% block title %} {{title}}
-{%endblock%} {% block body %} {% with wiki_entry=wiki_entry%}
+{% extends "encyclopedia/layout.html" %} {% autoescape off %} {% block title %}
+{{title}} {%endblock%} {% block body %} {% with wiki_entry=wiki_entry%}
 <form action="{% url 'encyclopedia:edit_save'  %}" method="POST">
   {% csrf_token %}
-  <textarea name="edit_content">{{wiki_entry}}</textarea>
+  <textarea
+    style="height: 70vh"
+    placeholder="Enter description here"
+    name="edit_content"
+  >
+{{wiki_entry|safe|escape}}</textarea
+  ><br />
   <input type="hidden" name="title" value="{{title}}" />
   <br />
   <input type="submit" value="Save" />
 </form>
-{% endwith %} {% endblock %}
+{% endwith %} {% endblock %} {% endautoescape %}
