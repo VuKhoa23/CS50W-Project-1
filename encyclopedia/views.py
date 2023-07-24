@@ -10,6 +10,7 @@ class SearchForm(forms.Form):
             'placeholder': 'Search Encyclopedia'}), required=False)
 
 def index(request):
+    print(util.list_entries())
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries(),
         "searchForm": SearchForm()
@@ -33,10 +34,8 @@ def get_searched_entry(request):
             entries = util.list_entries()
             for entry in entries:
                 if entry.lower() == searchValue.lower():
-                    return render(request, "encyclopedia/show-wiki.html", {
-                    "entries": util.list_entries(),
-                    "wiki_entry": markdown2.markdown(util.get_entry(entry)),
-                    "searchForm": SearchForm()})
+                    return HttpResponseRedirect(f"{entry}")
+
             cnt = 0
             sub_entries = []
             for entry in entries:

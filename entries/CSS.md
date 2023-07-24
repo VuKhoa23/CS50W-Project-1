@@ -1,2 +1,2 @@
 # CSS
-## CSS makes [HTML](/wiki/HTML) looks cute
+## CSS makes [HTML](/wiki/HTML) looks more beautiful

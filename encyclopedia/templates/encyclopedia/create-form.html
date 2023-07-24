@@ -4,7 +4,7 @@
 {% autoescape off %}
 <form action="{% url 'encyclopedia:create_save'  %}" method="POST">
   {% csrf_token %}
-  <input type="text" name="title" placeholder="Enter title here" />
+  <input type="text" name="title" placeholder="Enter title here" required />
   <br />
   <textarea
     style="height: 70vh"
